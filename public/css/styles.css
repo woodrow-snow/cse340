@@ -4,3 +4,254 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  /* colors */
+  --primary: #912F40;
+  --secondary: #702632;
+  --accent1: #40434E;
+  --accent2: #FFFFFA; 
+  --newBlack: #080705;
+
+  /* fonts */
+  --head: "Racing Sans One", Tahoma, Verdana, Calibri, Arial;
+  --body: "STIX Two Text", "Times New Roman", Serif;
+}
+
+/*************************** Header ***************************/
+.siteName a{
+  /* font */
+  font-family: var(--head);
+  font-size: 2rem;
+
+  /* colors */
+  color: var(--primary);
+}
+
+#tools a{
+  /* font */
+  font-family: var(--body);
+
+  /* colors */
+  color: var(--newBlack);
+}
+
+.siteName a, #tools a{
+  /* text */
+  text-decoration: none;
+}
+
+
+
+header {
+  /* flex */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*************************** Navigation ***************************/
+nav ul {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  /* gap: 0.5rem; */
+  justify-content: center;
+
+  /* box model */
+  padding: 0;
+
+  /* colors */
+  background-color: var(--secondary);
+}
+
+nav ul li {
+  list-style-type: none;
+
+  /* font */
+  font-family: var(--body);
+  font-size: 1.1rem;
+
+  /* colors */
+  color: var(--accent2);
+
+  /* box model */
+  /* border: 1px solid var(--newBlack); */
+  padding: 0.5rem;
+}
+
+/*************************** Main Elements ***************************/
+h1 {
+  font-family: var(--head);
+  font-size: 1.7rem;
+}
+
+.hero img{
+  display: block;
+  margin: 0 auto;
+
+  width: 300px;
+}
+
+.hero {
+  position: relative;
+}
+
+/* float section */
+#floatAd{
+  /* box model */
+  max-width: 170px;
+
+  /* position */
+  position: absolute;
+  top: 183px;
+
+  /* color */
+  background-color: #fffffa81;
+
+  /* text */
+  text-align: center;
+
+}
+
+#floatAd h2 {
+  font-family: var(--head);
+}
+
+#floatAd p {
+  font-family: var(--body);
+}
+
+#floatAd h2, #floatAd p {
+  margin: 0;
+  color: var(--primary);
+}
+
+#floatAd button {
+  /* box model */
+  border: none;
+  padding: 0.5rem;
+
+  /* colors */
+  color: var(--accent2);
+  background-color: var(--primary);
+
+  /* font */
+  font-family: var(--body);
+  font-size: 1.2rem;  
+}
+
+#floatAd button:hover{
+  background-color: var(--secondary);
+  text-decoration: underline;
+}
+
+/*************************** reviews ***************************/
+#reviews h2{
+  /* font */
+  font-family: var(--head);
+  
+  /* text */
+  text-align: center;
+}
+
+#reviews ul li {
+  font-family: var(--body);
+}
+
+/*************************** Upgrades ***************************/
+#upgrades{
+  /* grid */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+#upgrades h2 {
+  /* grid */
+  grid-column: 1/3;
+
+  /* font */
+  font-family: var(--head);
+
+  /* text */
+  text-align: center;
+}
+
+.partUpgrade {
+  /* colors */
+  background-color: var(--secondary);
+
+  /* flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* text */
+  text-align: center;
+}
+
+.partUpgrade img {
+  /* box model */
+  width: 81px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.partUpgrade a {
+  /* text */
+  text-decoration: none;
+
+  /* colors */
+  color: var(--accent2);
+
+  /* font */
+  font-family: var(--body);
+}
+
+.partUpgrade a:hover {
+  text-decoration: underline;
+  color: rgb(180, 180, 180);
+}
+
+@media only screen and (min-width:500px){
+  #wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  nav ul {
+    justify-content: space-evenly;
+  }
+
+  #reviews h2, #upgrades h2 {
+    text-align: left;
+  }
+
+  #reviewsAndUpgrades {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 1rem;
+  }
+
+  #upgrades {
+    grid-area: 1/1/2/2;
+  }
+
+  #reviews {
+    grid-column: 2/3;
+  }
+
+    #reviews h2 {
+      padding-left: 1rem;
+    }
+
+    #reviews ul li {
+      padding: 1rem 0;
+    }
+}
