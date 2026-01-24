@@ -245,6 +245,36 @@ h1 {
   justify-content: end;
 }
 
+/*************************** Styling for details view ***************************/
+#vehicle_details {
+  display: flex;
+  flex-direction: column;
+}
+
+#vehicle_details #v_info p{
+  /* font */
+  font-size: 1.3rem;
+}
+
+#vehicle_details picture {
+  align-self: center;
+  justify-self: center;
+}
+
+#v_info {
+  border: 1px solid #080705;
+}
+
+#v_info p {
+  padding: 0.5rem;
+}
+
+#v_info p:nth-child(even){
+  background-color: #40434e23;
+}
+
+
+/*************************** Media Query ***************************/
 @media only screen and (min-width:500px){
   #wrapper {
     /* box model */
@@ -308,5 +338,17 @@ h1 {
       align-items: end;
       justify-content: center;
       gap: 0.5rem;
+    }
+
+    /*************************** vehicle details large view ***************************/
+    #vehicle_details {
+      /* grid */
+      display: grid;
+      grid-template-columns: 2fr auto;
+      gap: 1rem;
+    }
+
+    #vehicle_details picture {
+      grid-row: 1/3;
     }
 }
