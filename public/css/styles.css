@@ -273,6 +273,93 @@ h1 {
   background-color: #40434e23;
 }
 
+/*************************** Login Page ***************************/
+#login, #register {
+  /* font */
+  font-size: 1.2rem;
+
+  /* flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  /* box model */
+  padding: 1rem;
+}
+
+#login input[type='email'],
+#login input[type='text'],
+#login input[type='password'] {
+  border-radius: 2px;
+  padding: 0.2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#login input[type='submit'],  #register input[type='submit']{
+  /* box model */
+  padding: 0.5rem;
+  border: none;
+  border-radius: 2px;
+
+  /* colors */
+  background-color: var(--secondary);
+  color: var(--accent2);
+
+  /* font */
+  font-size: 1.2rem;
+}
+
+#login input[type='submit']:hover, #register input[type='submit']:hover {
+  background-color: var(--primary);
+  color: var(--newBlack);
+}
+
+.signup {
+  text-align: center;
+}
+
+.signup a {
+  color: var(--primary);
+}
+
+.signup a:hover {
+  color: var(--accent1);
+}
+
+/*************************** Sign up view ***************************/
+#register input[type='text'],
+#register input[type='email'],
+#register input[type='password'] {
+  /* flex */
+  display: flex;
+  flex-direction: column;
+
+  /* box model */
+  padding: 0.2rem;
+  border-radius: 2px;
+}
+
+#register label[for='account_password'] {
+  /* box model */
+  margin-left: 30px;
+}
+
+.show_password {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.show_password img {
+  width: 25px;
+}
+
+
 
 /*************************** Media Query ***************************/
 @media only screen and (min-width:500px){
