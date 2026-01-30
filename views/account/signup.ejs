@@ -19,15 +19,15 @@
 <form id="register" action="/account/signup" method="post">
     <label for="account_firstname">
         First Name:
-        <input type="text" name="account_firstname" id="account_firstname" required title="First Name">
+        <input type="text" name="account_firstname" id="accountFirstname" required title="First Name" value="<%= locals.account_firstname %>">
     </label>
     <label for="account_lastname">
         Last Name:
-        <input type="text" name="account_lastname" id="account_lastname" required title="Last Name">
+        <input type="text" name="account_lastname" id="account_lastname" required title="Last Name" value="<%= locals.account_lastname %>">
     </label>
     <label for="account_email">
         Email Address:
-        <input type="email" name="account_email" id="account_email" required title="Email Address">
+        <input type="email" name="account_email" id="account_email" required title="Email Address" value="<%= locals.account_email %>">
     </label>
     <label for="account_password">
         Password:
