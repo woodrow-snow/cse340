@@ -299,7 +299,7 @@ h1 {
   flex-direction: column;
 }
 
-#login input[type='submit'],  #register input[type='submit']{
+.submitBtns{
   /* box model */
   padding: 0.5rem;
   border: none;
@@ -313,7 +313,7 @@ h1 {
   font-size: 1.2rem;
 }
 
-#login input[type='submit']:hover, #register input[type='submit']:hover {
+.submitBtns:hover {
   background-color: var(--primary);
   color: var(--newBlack);
 }
@@ -359,7 +359,38 @@ h1 {
   width: 25px;
 }
 
+/*************************** Add Classificaiton ***************************/
+#add-classification-form{
+  /* flex*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 
+  & label {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+
+    /* font */
+    font-size: 1.2rem;
+
+    & input {
+      /* box model */
+      border-radius: 2px;
+      padding: 0.2rem;
+
+      & :valid {
+        color: #117a03;
+      }
+
+      & :invalid {
+        color: #702632;
+      }
+    }
+  }
+}
 
 /*************************** Media Query ***************************/
 @media only screen and (min-width:500px){

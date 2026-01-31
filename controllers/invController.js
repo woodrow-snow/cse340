@@ -38,4 +38,55 @@ invCont.buildByInvId = async function (req, res, next) {
     });
 }
 
+/* ***************************
+ *  Building the management page
+ * ************************** */
+invCont.buildManagementView = async function (req, res, next) {
+    let nav = await utilities.getNav();
+    const title = 'Management Portal';
+    res.render('./inventory/management', {
+        title,
+        nav,
+        errors: null
+    });
+}
+
+/* ***************************
+ *  Building the add classificatoin page
+ * ************************** */
+invCont.buildAddClasificationView = async function (req, res, next) {
+    let nav = await utilities.getNav();
+    const title = 'Add Classification'
+    res.render('./inventory/add-classification', {
+        title,
+        nav,
+        errors: null
+    });
+}
+
+/* ***************************
+ *  Processing New Classification
+ * ************************** */
+invCont.addClassification = async function (req, res) {
+    let nav = await utilities.getNav();
+    const classificaiton_name = req.body;
+
+    const regResult = await invModel.addClassification(classificaiton_name);
+
+    if (regResult) {
+        req.flash('notice', `Congradulations, you have entered the new ${classificaiton_name} view`);
+    } else {
+        req.flash('notice', 'Sorry, the addition of the new classification has failed');
+        res.status(501).render('./inventory/add-classification', {
+            title: 'Add Classification',
+            nav,
+            errors: null,
+        }); 
+    }
+}
+
+invCont.buildAddInventoryView = async function (req, res, next) {
+    
+}
+
 module.exports = invCont;

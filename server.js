@@ -62,6 +62,7 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use("/inv", inventoryRoute);
 
+// account routes
 app.use('/account', accountRoute);
 
 // intentional Error route
