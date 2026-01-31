@@ -84,7 +84,31 @@ Util.buildVehicleDetails = async function (data) {
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
-
+/* **************************************
+* Build the classification list for inventory addition
+* ************************************ */
+Util.buildClassificationList = async function (classification_id = null) {
+    // getting data from
+    let data = await invModel.getClassifications();
+    
+    // creating list
+    let classificaiton_list =
+        '<select name="classification_id" id="classificationList" required>';
+    classificaiton_list += "<option value=''>Choose a Classification</option>";
+    data.rows.forEach((row) => {
+        classificaiton_list += '<option value="' + row.classification_id + '"';
+        // checking to see if the classification id was passed in. If it was and it matches the current id, then that option is selected by default
+        if (
+            classification_id !== null &&
+            row.classification_id == classification_id
+        ) {
+            classificaiton_list += " selected ";
+        }
+        classificaiton_list += ">" + row.classification_name + "</option>";
+    });
+    classificaiton_list += "</select>"
+    return classificaiton_list;
+}
 
 
 module.exports = Util;

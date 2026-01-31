@@ -392,6 +392,57 @@ h1 {
   }
 }
 
+/*************************** Add Inventory ***************************/
+#add-inventory-form {
+  /* flex */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 2rem;
+
+  & fieldset {
+      /* flex */
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  
+      & legend {
+        font-size: 1.3rem;
+        padding: 0 0.3rem;
+      }
+  
+      & #classificationList,
+      textarea {
+        /* box model */
+        border-radius: 2px;
+        padding: 0.2rem;
+  
+        /* font */
+        font-size: 1.1rem;
+      }
+  
+      & textarea {
+        padding: 0.3rem;
+        width: 212px;
+      }
+    }
+
+  & label {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    /* font */
+    font-size: 1.2rem;
+
+    & input {
+      border-radius: 2px;
+      padding: 0.2rem;
+    }
+  }
+}
+
 /*************************** Media Query ***************************/
 @media only screen and (min-width:500px){
   #wrapper {
@@ -468,5 +519,26 @@ h1 {
 
     #vehicle_details picture {
       grid-row: 1/3;
+    }
+
+        /*************************** Add Inventory Large ***************************/
+    #add-inventory-form {
+      /* grid */
+      display: grid;
+      grid-template-columns: 1fr 1fr;      
+
+      
+
+      & input[type='submit'] {
+        grid-column: 1/3;
+        justify-self: center;
+        align-self: center;
+      }
+
+      & #inv_description {
+        padding: 0.3rem;
+        width: auto;
+        max-width: 320px;
+      }
     }
 }

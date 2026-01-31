@@ -69,24 +69,85 @@ invCont.buildAddClasificationView = async function (req, res, next) {
  * ************************** */
 invCont.addClassification = async function (req, res) {
     let nav = await utilities.getNav();
-    const classificaiton_name = req.body;
+    const classification_name = req.body.classification_name;
 
-    const regResult = await invModel.addClassification(classificaiton_name);
+    const regResult = await invModel.addClassification(classification_name);
 
     if (regResult) {
-        req.flash('notice', `Congradulations, you have entered the new ${classificaiton_name} view`);
+        req.flash('notice', `Congradulations, you have entered the new ${classification_name} classification`);
+        nav = await utilities.getNav();
+        res.status(201).render('./inventory/add-classification', {
+            title: 'Add Classification',
+            nav,
+            errors: null
+        });
     } else {
         req.flash('notice', 'Sorry, the addition of the new classification has failed');
         res.status(501).render('./inventory/add-classification', {
             title: 'Add Classification',
             nav,
-            errors: null,
         }); 
     }
 }
 
+/* ***************************
+ *  Building the add inventory page
+ * ************************** */
 invCont.buildAddInventoryView = async function (req, res, next) {
-    
+    // getting nav
+    let nav = await utilities.getNav();
+
+    // creating title
+    const title = 'Add Inventory';
+
+    // creating classificationList
+    let classification_list = await utilities.buildClassificationList();
+
+    res.render("./inventory/add-inventory", {
+        title,
+        nav,
+        classification_list,
+        errors: null,
+    });
+}
+
+/* ***************************
+ *  Processing New Inventory
+ * ************************** */
+invCont.addInventory = async function (req,res) {
+    let nav = await utilities.getNav();
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
+    const classification_list = await utilities.buildClassificationList();
+
+    const addInvResults = await invModel.addInventory(
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id 
+    );
+
+    if (addInvResults) {
+        req.flash('notice', `Congradulations, your new inventory ${inv_year} ${inv_make} ${inv_model} has been added!`)
+        res.status(201).render('./inventory/add-inventory', {
+            title: 'Add Inventory',
+            nav,
+            classification_list,
+            errors: null
+        });
+    } else {
+        req.flash('notice', 'Sorry, the addition of your inventory has failed.')
+        res.status(501).render('./inventory/add-inventory', {
+            title: 'Add Inventory',
+            nav,
+            classification_list
+        });
+    }
 }
 
 module.exports = invCont;
