@@ -44,10 +44,12 @@ invCont.buildByInvId = async function (req, res, next) {
 invCont.buildManagementView = async function (req, res, next) {
     let nav = await utilities.getNav();
     const title = 'Management Portal';
+    const classificationSelect = await utilities.buildClassificationList();
     res.render('./inventory/management', {
         title,
         nav,
-        errors: null
+        errors: null,
+        classificationSelect
     });
 }
 
@@ -146,6 +148,107 @@ invCont.addInventory = async function (req,res) {
             title: 'Add Inventory',
             nav,
             classification_list
+        });
+    }
+}
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+    const classification_id = parseInt(req.params.classification_id);
+    const invData = await invModel.getInventoryByClassificationId(classification_id);
+    if (invData[0].inv_id) {
+        return res.json(invData);
+    } else {
+        next(new Error('No data returned'));
+    }
+}
+
+/* ***************************
+ *  Building the edit inventory page
+ * ************************** */
+invCont.buildInventoryEditView = async function (req, res, next) {
+    // getting inv_id from url
+    const inv_id = parseInt(req.params.invId);
+
+    // getting nav
+    let nav = await utilities.getNav();
+
+    const vehicleData = await invModel.getVehicleDetailsById(inv_id);
+    const name = `${vehicleData.inv_make} ${vehicleData.inv_model}`;
+
+    // creating title
+    const title = `Edit ${name}`;
+
+    // creating classificationList
+    let classificationSelect = await utilities.buildClassificationList(vehicleData.classification_id);
+
+    res.render("./inventory/edit-inventory", {
+        title,
+        nav,
+        classificationSelect: classificationSelect,
+        errors: null,
+        inv_id: vehicleData.inv_id,
+        inv_make: vehicleData.inv_make,
+        inv_model: vehicleData.inv_model,
+        inv_year: vehicleData.inv_year,
+        inv_description: vehicleData.inv_description,
+        inv_image: vehicleData.inv_image,
+        inv_thumbnail: vehicleData.inv_thumbnail,
+        inv_price: vehicleData.inv_price,
+        inv_miles: vehicleData.inv_miles,
+        inv_color: vehicleData.inv_color,
+        classification_id: vehicleData.classification_id,
+    });
+}
+
+/* ***************************
+ *  Update Inventory Data
+ * ************************** */
+invCont.updateInventory = async function (req,res, next) {
+    let nav = await utilities.getNav();
+    const { inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
+    const classificationSelect = await utilities.buildClassificationList();
+
+    const updateResult = await invModel.updateInventory(
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id 
+    );
+
+    if (updateResult) {
+        const itemName = updateResult.inv_make + " " + updateResult.inv_model;
+        req.flash('notice', `The ${itemName} was successfully updated.`)
+        res.redirect('/inv/');
+    } else {
+        classificationSelect = await utilities.buildClassificationList(classification_id);
+        const itemName = `${inv_make} ${inv_model}`;
+        req.flash('notice', 'Sorry, the insert has failed.')
+        res.status(501).render('./inventory/edit-inventory', {
+            title: 'Edit ' + itemName,
+            nav,
+            classificationSelect: classificationSelect,
+            errors: null,
+            inv_id,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            classification_id,
         });
     }
 }

@@ -392,8 +392,8 @@ h1 {
   }
 }
 
-/*************************** Add Inventory ***************************/
-#add-inventory-form {
+/*************************** Add Inventory / Edit Inventory ***************************/
+#add-inventory-form, #edit-inventory-form {
   /* flex */
   display: flex;
   flex-direction: column;
@@ -441,6 +441,65 @@ h1 {
       padding: 0.2rem;
     }
   }
+}
+
+/*************************** Management Portal ***************************/
+/* Add links for classification and inventory */
+#classification, #inventory {
+  text-decoration: none;
+  color: var(--newBlack);
+}
+
+#classification:hover,
+#inventory:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.AddLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem;
+}
+
+/* manage inventory section */
+#manage {
+  & p, & #classificationList, & #inventoryDisplay{
+    margin: 0.5rem;
+  }
+
+  & #classificationList {
+    font-size: 1.15rem;
+    padding: 0.5rem;
+  }
+
+  /* css for table */
+  & #inventoryDisplay {
+    /* font */
+    font-size: 1.1rem;
+
+    /* text */
+    text-align: center;
+    
+    /* box model */
+    border-spacing: 0;
+
+    & tr:nth-child(even) {
+      background-color: #40434e44;
+
+    }
+
+    & td {
+      border: 1px solid var(--newBlack);
+      padding: 0.5rem;
+    }
+
+    & .ignore {
+      border: none;
+    }
+  }
+
 }
 
 /*************************** Media Query ***************************/
@@ -521,8 +580,8 @@ h1 {
       grid-row: 1/3;
     }
 
-        /*************************** Add Inventory Large ***************************/
-    #add-inventory-form {
+        /*************************** Add Inventory / Edit Inventory Large ***************************/
+    #add-inventory-form, #edit-inventory-form {
       /* grid */
       display: grid;
       grid-template-columns: 1fr 1fr;      

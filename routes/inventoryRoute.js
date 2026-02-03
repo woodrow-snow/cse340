@@ -20,6 +20,12 @@ router.get('/add-classification', utilities.handleErrors(invController.buildAddC
 // route to add inventory view
 router.get('/add-inventory', utilities.handleErrors(invController.buildAddInventoryView));
 
+// route to get classification id list
+router.get('/getInventory/:classification_id', utilities.handleErrors(invController.getInventoryJSON));
+
+// route to get to inventory edit by id
+router.get('/edit/:invId', utilities.handleErrors(invController.buildInventoryEditView));
+
 // Post requests
 // sending add classification data to db
 router.post(
@@ -35,6 +41,13 @@ router.post(
     regValidate.inventoryRules(),
     regValidate.checkAddInventoryData,
     utilities.handleErrors(invController.addInventory)
+);
+
+router.post(
+    '/edit-inventory/',
+    regValidate.inventoryRules(),
+    regValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory)
 );
 
 module.exports = router;

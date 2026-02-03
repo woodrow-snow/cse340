@@ -17,7 +17,7 @@
     </ul>
 <% } %>
 
-<form id="add-inventory-form" action="/inv/add-inventory" method="post">
+<form id="edit-inventory-form" action="/inv/edit-inventory" method="post">
     <fieldset>
         <legend>Basic Information</legend>
         <label for="inv_make">
@@ -34,7 +34,7 @@
         </label>
         <label for="classification_id">
             Classification Type:
-            <%- classification_list %>
+            <%- classificationSelect %>
         </label>
     </fieldset>
 
@@ -58,10 +58,13 @@
         </label>
     </fieldset>
 
-    <!-- adding images privatly -->
+    <!-- editing images privatly -->
     <input type="hidden" id="inv_image" name="inv_image" value="/images/vehicles/no-image.png">
     <input type="hidden" id="inv_thumbnail" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png">
 
-    <input type="submit" class="submitBtns" value="Add Inventory">
-
+    <input type="submit" class="submitBtns" id="grabme" value="Update <%=locals.inv_make %> <%=locals.inv_model%>" disabled>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%=locals.inv_id %>"
+    <% } %>>
+    <script src="../../js/inv-update.js" defer></script>
 </form>

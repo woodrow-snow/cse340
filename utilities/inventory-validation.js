@@ -97,6 +97,7 @@ validate.checkAddClassificationData = async (req, res, next) => {
     next();
 }
 
+// checking data coming in for new inventory item
 validate.checkAddInventoryData = async (req, res, next) => {
     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
     let errors = [];
@@ -116,6 +117,33 @@ validate.checkAddInventoryData = async (req, res, next) => {
             inv_price,
             inv_miles,
             inv_color,
+        });
+        return;
+    }
+    next();
+}
+
+// validating edited inv data
+validate.checkUpdateData = async (req, res, next) => {
+    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id, inv_id } = req.body;
+    let errors = [];
+    errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav();
+        const classification_list = await utilities.buildClassificationList(classification_id);
+        res.render('./inventory/edit-inventory', {
+            errors,
+            title: `Edit ${inv_make} ${inv_model}`,
+            nav,
+            classification_list,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_price,
+            inv_miles,
+            inv_color,
+            inv_id
         });
         return;
     }
