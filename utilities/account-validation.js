@@ -81,7 +81,7 @@ validate.checkRegData = async (req, res, next) => {
     let errors = [];
     errors = validationResult(req);
     if (!errors.isEmpty()) {
-        let nav = await utilities.getNav()
+        let nav = await utilities.getNav();
         res.render("account/signup", {
             errors,
             title: "Sign Up",
@@ -89,6 +89,23 @@ validate.checkRegData = async (req, res, next) => {
             account_firstname,
             account_lastname,
             account_email,
+        });
+        return;
+    }
+    next();
+}
+
+validate.checkLoginData = async (req, res, next) => {
+    const account_email = req.body;
+    let errors = [];
+    errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav();
+        res.render('accounts/index', {
+            errors,
+            title: 'Login In',
+            nav,
+            account_email
         });
         return;
     }
