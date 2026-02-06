@@ -140,7 +140,7 @@ Util.checkJWTToken = (req, res, next) => {
  *  Check Login
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
-    if (res.locals.loggedin) {
+    if (res.locals.loggedIn) {
         next();
     }
     else {

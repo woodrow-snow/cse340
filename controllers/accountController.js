@@ -130,5 +130,29 @@ async function accountLogin(req, res) {
 }
 
 
+/* ****************************************
+*  Deliver update account view
+* *************************************** */
+async function  buildUpdate(req, res, next) {
+    let nav = await utilities.getNav();
+    res.render('account/update', {
+        title: 'Update Information',
+        nav,
+        errors: null
+    });
+}
 
-module.exports = { buildLogin, buildSignUp, registerAccount, accountLogin, buildManagement };
+/* ****************************************
+*  Deliver home account view
+* *************************************** */
+async function  buildHome(req, res, next) {
+    let nav = await utilities.getNav();
+    res.render('account/index', {
+        title: 'Account Home',
+        nav,
+        errors: null
+    });
+}
+
+
+module.exports = { buildLogin, buildSignUp, registerAccount, accountLogin, buildManagement, buildUpdate, buildHome };

@@ -11,6 +11,9 @@ router.get('/login', utilities.handleErrors(accController.buildLogin));
 // building sign up view
 router.get('/signup', utilities.handleErrors(accController.buildSignUp));
 
+// build update view
+router.get('/update/:account_id', utilities.handleErrors(accController.buildUpdate))
+
 // sending login information to db and processing
 router.post(
     '/signup',
@@ -27,6 +30,6 @@ router.post(
     utilities.handleErrors(accController.accountLogin)
 );
 
-router.get('/', utilities.checkLogin, utilities.handleErrors(accController.buildManagement))
+router.get('/', utilities.checkLogin, utilities.handleErrors(accController.buildHome))
 
 module.exports = router;
