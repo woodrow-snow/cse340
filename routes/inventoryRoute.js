@@ -26,6 +26,9 @@ router.get('/getInventory/:classification_id', utilities.handleErrors(invControl
 // route to get to inventory edit by id
 router.get('/edit/:invId', utilities.handleErrors(invController.buildInventoryEditView));
 
+// route to delete page
+router.get('/delete/:inv_id', utilities.handleErrors(invController.buildDeleteView));
+
 // Post requests
 // sending add classification data to db
 router.post(
@@ -48,6 +51,11 @@ router.post(
     regValidate.inventoryRules(),
     regValidate.checkUpdateData,
     utilities.handleErrors(invController.updateInventory)
+);
+
+router.post(
+    '/delete/',
+    utilities.handleErrors(invController.deleteInventory)
 );
 
 module.exports = router;
