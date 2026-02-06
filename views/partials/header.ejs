@@ -4,8 +4,8 @@
     </span>
     <div id="tools">
         <% if (locals.loggedIn == 1) { %>
-            <a title="Click to view your account" href="/inv/">Account</a>
-            <a title="Click to Logout" href="" >Logout</a> <!-- **need to add link for logout process** -->
+            <a title="Click to view your account" href="/inv/" id="acc">Account</a>
+            <a title="Click to Logout" href="" id="logout">Logout</a> <!-- **need to add link for logout process** -->
         <% } else { %>
             <a title="Click to log in" href="/account/login" id="loginBtn">My Account</a>
         <% } %>

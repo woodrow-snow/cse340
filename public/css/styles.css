@@ -502,6 +502,23 @@ h1 {
 
 }
 
+/*************************** Styling for header account buttons ***************************/
+#tools {
+  /* acc and logout */
+  & #acc {
+    margin-right: 0.5rem;
+  }
+
+  & #acc, & #logout {
+    font-family: var(--body);
+  }
+
+  & #acc:hover, & #logout:hover {
+    text-decoration: underline;
+    color: var(--primary);
+  }
+}
+
 /*************************** Media Query ***************************/
 @media only screen and (min-width:500px){
   #wrapper {
