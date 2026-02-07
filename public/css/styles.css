@@ -343,7 +343,9 @@ h1 {
   border-radius: 2px;
 }
 
-#register label[for='account_password'], #login label[for='account_password'] {
+/* #register label[for='account_password'],
+#login label[for='account_password'] */
+label[for='account_password'] {
   /* box model */
   margin-left: 30px;
 }
@@ -516,6 +518,30 @@ h1 {
   & #acc:hover, & #logout:hover {
     text-decoration: underline;
     color: var(--primary);
+  }
+}
+
+/*************************** Update Info Page ***************************/
+#info-update-form, #password-update{
+  /* flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  /* font */
+  font-size: 1.2rem;
+
+  & label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    & input {
+      padding: 0.2rem;
+      border-radius: 2px;
+    }
   }
 }
 
