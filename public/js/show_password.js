@@ -2,7 +2,7 @@ const show = document.querySelector('#showOrHide');
 
 // adding event listener to show or hide password
 show.addEventListener('click', () => { 
-    const pswdInput = document.querySelector('#account_password');
+    const pswdInput = document.querySelector('.account_password');
     const type = pswdInput.getAttribute('type');
     if (type == 'password') {
         pswdInput.setAttribute('type', 'text');
